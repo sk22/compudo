@@ -3,25 +3,28 @@ import styled from 'styled-components'
 import debounce from 'lodash.debounce'
 import PropTypes from 'prop-types'
 import client from '../cms'
+import Link from './link'
+import { SectionHeading } from './heading'
+import { SidebarSection } from './sidebar'
 
 const StyledInput = styled.input`
   background: #eee;
   border: none;
+  border-bottom: 0.1rem solid #777;
   font-size: 1.2rem;
   font-family: Ubuntu, sans-serif;
   padding: 0.4rem;
-  width: 20rem;
 
   @media screen and (max-width: 1023px) {
     width: 100%;
   }
 `
 
-const Results = styled.ul``
+const ResultsList = styled.ul``
 
 const Result = ({ entry }) => (
   <li>
-    <a href={`/${entry.fields.slug}`}>{entry.fields.title}</a>
+    <Link to={`/${entry.fields.slug}`}>{entry.fields.title}</Link>
   </li>
 )
 
@@ -68,11 +71,14 @@ class SearchBar extends Component {
       />
       {this.state.results &&
         (this.state.results.items.length ? (
-          <Results>
-            {this.state.results.items.map(item => (
-              <Result key={item.fields.slug} entry={item} />
-            ))}
-          </Results>
+          <SidebarSection>
+            <SectionHeading>Suchergebnisse</SectionHeading>
+            <ResultsList>
+              {this.state.results.items.map(item => (
+                <Result key={item.fields.slug} entry={item} />
+              ))}
+            </ResultsList>
+          </SidebarSection>
         ) : (
           <p>
             Es wurden keine Erklärungen gefunden, die Ihren Suchkriterien

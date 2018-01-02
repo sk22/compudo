@@ -37,7 +37,9 @@ const Content = styled.div`
   }
 `
 
-const Main = styled.main``
+const Main = styled.main`
+  width: auto;
+`
 
 const Article = ({ children }) => (
   <Base>
