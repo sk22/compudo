@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import Container from '../components/container'
 
-import Base from './base'
 import { Header, Title } from '../components/header'
 import Logo from '../components/logo'
 import Sidebar from '../components/sidebar'
@@ -24,13 +24,13 @@ const Content = styled.div`
   & > * + * {
     margin-left: 2rem;
   }
-  
+
   @media screen and (max-width: 767px) {
     flex-direction: column-reverse;
 
     & > * + * {
       padding-bottom: 1rem;
-      border-bottom: .07rem solid #aaa;
+      border-bottom: 0.07rem solid #aaa;
       margin-bottom: 1rem;
       margin-left: 0;
     }
@@ -38,24 +38,28 @@ const Content = styled.div`
 `
 
 const Main = styled.main`
-  width: auto;
+  flex-grow: 1;
 `
 
-const Article = ({ children }) => (
-  <Base>
-    <Header>
-      <HeaderLogo />
-      <Title>compudo</Title>
-    </Header>
-    <Content>
-      <Sidebar />
-      <Main>{children}</Main>
-    </Content>
-  </Base>
-)
+const Shell = ({ title = 'compudo', children }) => {
+  document.title = title
+  return (
+    <Container>
+      <Header>
+        <HeaderLogo />
+        <Title>compudo</Title>
+      </Header>
+      <Content>
+        <Sidebar />
+        <Main>{children}</Main>
+      </Content>
+    </Container>
+  )
+}
 
-Article.propTypes = {
+Shell.propTypes = {
+  title: PropTypes.string,
   children: PropTypes.node.isRequired
 }
 
-export default Article
+export default Shell

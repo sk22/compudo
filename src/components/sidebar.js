@@ -13,6 +13,7 @@ export const SidebarSection = styled.section`
 
 const Nav = styled.nav`
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   width: 20rem;
 
@@ -23,25 +24,26 @@ const Nav = styled.nav`
 
 class Sidebar extends Component {
   state = {
-    application: null
+    tags: null
   }
 
   async componentDidMount() {
-    const application = await client.getEntries({ content_type: 'application' })
-    console.log(application)
-    this.setState({ application })
+    const tags = await client.getEntries({ content_type: 'tag' })
+    this.setState({ tags })
   }
 
   render = () => (
     <Nav>
       <SearchBar />
-      {this.state.application ? (
+      {this.state.tags ? (
         <SidebarSection>
           <SectionHeading>Erklärungen</SectionHeading>
           <ul>
-            {this.state.application.items.map(item => (
+            {this.state.tags.items.map(item => (
               <li key={item.fields.slug}>
-                <Link to={`/guides/${item.fields.slug}`}>{item.fields.name}</Link>
+                <Link to={`/guides/${item.fields.slug}`}>
+                  {item.fields.name}
+                </Link>
               </li>
             ))}
           </ul>
