@@ -8,7 +8,6 @@ import { SectionHeading } from './heading'
 import { SidebarSection } from './sidebar'
 
 const StyledInput = styled.input`
-  background: #eee;
   border: none;
   border-bottom: 0.1rem solid #777;
   font-size: 1.2rem;

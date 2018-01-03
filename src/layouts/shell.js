@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Container from '../components/container'
+import { Link } from 'react-router-dom'
 
+import Container from '../components/container'
 import { Header, Title } from '../components/header'
 import Logo from '../components/logo'
 import Sidebar from '../components/sidebar'
@@ -41,14 +42,21 @@ const Main = styled.main`
   flex-grow: 1;
 `
 
+const DecorationlessLink = styled(Link)`
+  text-decoration: none;
+  color: initial;
+`
+
 const Shell = ({ title = 'compudo', children }) => {
   document.title = title
   return (
     <Container>
-      <Header>
-        <HeaderLogo />
-        <Title>compudo</Title>
-      </Header>
+      <DecorationlessLink to="/">
+        <Header>
+          <HeaderLogo />
+          <Title>compudo</Title>
+        </Header>
+      </DecorationlessLink>
       <Content>
         <Sidebar />
         <Main>{children}</Main>

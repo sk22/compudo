@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Page from '../layouts/page'
+import GuideOrSite from './guide-or-site'
 
-const Home = props => <Page>Welcome</Page>
+const Home = props => <GuideOrSite match={{ params: { slug: 'home' } }} />
 
 export default Home

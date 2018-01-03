@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 import SearchBar from './search-bar'
 import client from '../cms'
@@ -22,6 +22,10 @@ const Nav = styled.nav`
   }
 `
 
+const Item = styled.li`
+  margin-bottom: 0.3rem;
+`
+
 class Sidebar extends Component {
   state = {
     tags: null
@@ -29,25 +33,43 @@ class Sidebar extends Component {
 
   async componentDidMount() {
     const tags = await client.getEntries({ content_type: 'tag' })
-    this.setState({ tags })
+    const sites = await client.getEntries({ content_type: 'site' })
+    this.setState({ tags, sites })
   }
 
   render = () => (
     <Nav>
       <SearchBar />
       {this.state.tags ? (
-        <SidebarSection>
-          <SectionHeading>Erklärungen</SectionHeading>
-          <ul>
-            {this.state.tags.items.map(item => (
-              <li key={item.fields.slug}>
-                <Link to={`/guides/${item.fields.slug}`}>
-                  {item.fields.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </SidebarSection>
+        <Fragment>
+          <SidebarSection>
+            <SectionHeading>Erklärungen</SectionHeading>
+            <ul>
+              <Item>
+                <Link to={`/guides`}>Alle Erklärungen</Link>
+              </Item>
+              {this.state.tags.items.map(item => (
+                <Item key={item.fields.slug}>
+                  <Link to={`/guides/${item.fields.slug}`}>
+                    {item.fields.name}
+                  </Link>
+                </Item>
+              ))}
+            </ul>
+          </SidebarSection>
+          <SidebarSection>
+            <SectionHeading>Informationen</SectionHeading>
+            <ul>
+              {this.state.sites.items
+                .filter(item => !item.fields.hidden)
+                .map(item => (
+                  <Item key={item.fields.slug}>
+                    <Link to={`/${item.fields.slug}`}>{item.fields.title}</Link>
+                  </Item>
+                ))}
+            </ul>
+          </SidebarSection>
+        </Fragment>
       ) : (
         <p>Es wird geladen...</p>
       )}

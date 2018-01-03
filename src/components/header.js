@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const Header = styled.header`
-  display: flex;
+  display: inline-flex;
+  width: auto;
   padding: 2rem;
   align-items: center;
 `
