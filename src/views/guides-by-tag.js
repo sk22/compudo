@@ -14,7 +14,8 @@ class GuidesByTag extends Component {
   }
 
   state = {
-    guides: null
+    guides: null,
+    name: null
   }
 
   componentWillReceiveProps(props) {
@@ -25,24 +26,28 @@ class GuidesByTag extends Component {
     this.updateGuides(this.props.match.params.tag)
   }
 
-  async updateGuides(tag) {
-    const guides = await client.getEntries({
-      content_type: 'guide',
-      'fields.tags': tag
-    })
-    const result = await client.getEntries({
+  async updateGuides(slug) {
+    const tag = await client.getEntries({
       content_type: 'tag',
-      'fields.slug': tag
+      'fields.slug': slug
     })
-    const name = result.items.length ? result.items[0].fields.name : tag
-    this.setState({ guides: guides.items, name })
+
+    if (tag.items.length) {
+      const guides = await client.getEntries({
+        content_type: 'guide',
+        'fields.tags.sys.id[in]': tag.items[0].sys.id
+      })
+      this.setState({ guides: guides.items, name: tag.items[0].fields.name })
+    } else {
+      this.setState({ guides: [], name: slug })
+    }
   }
 
   render = () => (
     <Page>
       {this.state.guides ? (
         <Fragment>
-          <Heading>Erklärungen für {this.state.name}</Heading>
+          <Heading>Erklärungen über {this.state.name}</Heading>
           <GuidesList guides={this.state.guides} />
         </Fragment>
       ) : (

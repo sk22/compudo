@@ -6,7 +6,7 @@ const StyledLink = styled(Link)`
     color: mediumblue;
   }
 
-  &:active {
+  &:active, &:hover, &:focus {
     color: darkblue;
   }
 `
