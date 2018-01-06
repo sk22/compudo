@@ -27,6 +27,7 @@ class GuidesByTag extends Component {
   }
 
   async updateGuides(slug) {
+    this.setState({ guides: null })
     const tag = await client.getEntries({
       content_type: 'tag',
       'fields.slug': slug

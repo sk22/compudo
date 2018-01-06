@@ -43,24 +43,20 @@ class GuideOrSite extends Component {
 
   componentDidMount = () => this.update(this.props.match.params.slug)
 
-  componentWillReceiveProps = props =>
-    this.update(props.match.params.slug)
+  componentWillReceiveProps = props => this.update(props.match.params.slug)
 
-  render = () => (
-    <Page>
-      {this.state.entry ? (
-        this.state.entry.sys.contentType.sys.id === 'guide' ? (
-          <Guide guide={this.state.entry} />
-        ) : (
-          <Site site={this.state.entry} />
-        )
-      ) : this.state.ok ? (
-        <Loading />
+  render = () =>
+    this.state.entry ? (
+      this.state.entry.sys.contentType.sys.id === 'guide' ? (
+        <Guide guide={this.state.entry} />
       ) : (
-        <Error message="Die gewünschte Seite wurde nicht gefunden." />
-      )}
-    </Page>
-  )
+        <Site site={this.state.entry} />
+      )
+    ) : this.state.ok ? (
+      <Loading />
+    ) : (
+      <Error message="Die gewünschte Seite wurde nicht gefunden." />
+    )
 }
 
 export default GuideOrSite

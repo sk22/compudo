@@ -22,7 +22,7 @@ const Article = styled.article`
 `
 
 const Guide = ({ guide }) => (
-  <Page>
+  <Page title={guide.fields.title}>
     <Heading>{guide.fields.title}</Heading>
     {guide.fields.authors && (
       <Meta>

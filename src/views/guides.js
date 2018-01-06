@@ -15,6 +15,7 @@ class Guides extends Component {
   }
 
   async updateGuides() {
+    this.setState({ guides: null })
     const guides = await client.getEntries({
       content_type: 'guide'
     })
