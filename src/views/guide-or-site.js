@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Page from '../layouts/page'
 import Guide from './guide'
 import Site from './site'
 import Loading from '../components/loading'

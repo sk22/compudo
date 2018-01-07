@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "contentful": "^5.0.5",
+    "disqus-react": "^1.0.2",
     "lodash.debounce": "^4.0.8",
     "marked": "^0.3.9",
     "react": "^16.2.0",
