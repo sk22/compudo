@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom'
 
 export const linkCSS = css`
   text-decoration: none;
-  border-bottom: .1rem solid black;
+  border-bottom: .1rem solid #87173d;
   transition: color 0.2s cubic-bezier(.25,.8,.25,1);
   transition: background-color 0.2s cubic-bezier(.25,.8,.25,1);
 
   &, &:visited {
-    color: darkblue;
+    color: #87173d;
   }
 
   &:hover, &:active {
-    background: darkblue;
+    background: #87173d;
     color: white;
   }
 `
