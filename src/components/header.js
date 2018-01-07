@@ -9,7 +9,7 @@ export const Header = styled.header`
 
 export const Title = styled.span`
   font-size: calc(10rem * 0.50748);
-  font-weight: 200;
+  font-weight: 300;
   
   @media screen and (max-width: 767px) {
     font-size: calc(5rem * 0.50748);
