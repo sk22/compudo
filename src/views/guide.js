@@ -21,8 +21,8 @@ const Article = styled.article`
   }
 `
 
-const Guide = ({ guide }) => (
-  <Page title={guide.fields.title}>
+const Guide = ({ guide, showDiscussion = true }) => (
+  <Page title={guide.fields.title} showDiscussion={showDiscussion}>
     <Heading>{guide.fields.title}</Heading>
     {guide.fields.authors && (
       <Meta>
@@ -65,7 +65,8 @@ Guide.propTypes = {
         })
       })
     )
-  })
+  }),
+  showDiscussion: PropTypes.bool
 }
 
 export default Guide

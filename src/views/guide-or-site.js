@@ -10,7 +10,8 @@ class GuideOrSite extends Component {
   static propTypes = {
     match: PropTypes.shape({
       params: PropTypes.shape({ slug: PropTypes.string })
-    })
+    }),
+    showDiscussion: PropTypes.bool
   }
 
   state = {
@@ -47,9 +48,12 @@ class GuideOrSite extends Component {
   render = () =>
     this.state.entry ? (
       this.state.entry.sys.contentType.sys.id === 'guide' ? (
-        <Guide guide={this.state.entry} />
+        <Guide
+          guide={this.state.entry}
+          showDiscussion={this.props.showDiscussion}
+        />
       ) : (
-        <Site site={this.state.entry} />
+        <Site site={this.state.entry} showDiscussion={this.props.showDiscussion} />
       )
     ) : this.state.ok ? (
       <Loading />
