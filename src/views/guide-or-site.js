@@ -27,7 +27,6 @@ class GuideOrSite extends Component {
     })
     if (guide.items.length) {
       this.setState({ entry: guide.items[0] })
-      console.log(guide.items[0])
       return
     }
     const site = await client.getEntries({
@@ -43,7 +42,11 @@ class GuideOrSite extends Component {
 
   componentDidMount = () => this.update(this.props.match.params.slug)
 
-  componentWillReceiveProps = props => this.update(props.match.params.slug)
+  componentWillReceiveProps = props => {
+    if (props.match.params.slug !== this.props.match.params.slug) {
+      this.update(props.match.params.slug)
+    }
+  }
 
   render = () =>
     this.state.entry ? (
@@ -53,7 +56,10 @@ class GuideOrSite extends Component {
           showDiscussion={this.props.showDiscussion}
         />
       ) : (
-        <Site site={this.state.entry} showDiscussion={this.props.showDiscussion} />
+        <Site
+          site={this.state.entry}
+          showDiscussion={this.props.showDiscussion}
+        />
       )
     ) : this.state.ok ? (
       <Loading />
