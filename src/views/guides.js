@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import client from '../cms'
 import Page from '../layouts/page'
 import Loading from '../components/loading'
@@ -22,18 +22,15 @@ class Guides extends Component {
     this.setState({ guides: guides.items })
   }
 
-  render = () => (
-    <Page>
-      {this.state.guides ? (
-        <Fragment>
-          <Heading>Erklärungen</Heading>
-          <GuidesList guides={this.state.guides} />
-        </Fragment>
-      ) : (
-        <Loading />
-      )}
-    </Page>
-  )
+  render = () =>
+    this.state.guides ? (
+      <Page title="Alle Erklärungen">
+        <Heading>Erklärungen</Heading>
+        <GuidesList guides={this.state.guides} />
+      </Page>
+    ) : (
+      <Loading />
+    )
 }
 
 export default Guides

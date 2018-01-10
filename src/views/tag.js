@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import client from '../cms'
 import Page from '../layouts/page'
@@ -28,34 +28,32 @@ class GuidesByTag extends Component {
 
   async updateGuides(slug) {
     this.setState({ guides: null })
-    const tag = await client.getEntries({
+    const tags = await client.getEntries({
       content_type: 'tag',
       'fields.slug': slug
     })
 
-    if (tag.items.length) {
+    if (tags.items.length) {
       const guides = await client.getEntries({
         content_type: 'guide',
-        'fields.tags.sys.id[in]': tag.items[0].sys.id
+        'fields.tags.sys.id[in]': tags.items[0].sys.id
       })
-      this.setState({ guides: guides.items, name: tag.items[0].fields.name })
+      this.setState({ guides: guides.items, tag: tags.items[0] })
     } else {
       this.setState({ guides: [], name: slug })
     }
   }
 
-  render = () => (
-    <Page>
-      {this.state.guides ? (
-        <Fragment>
-          <Heading>Erklärungen über {this.state.name}</Heading>
-          <GuidesList guides={this.state.guides} />
-        </Fragment>
-      ) : (
-        <Loading />
-      )}
-    </Page>
-  )
+  render = () =>
+    this.state.guides ? (
+      <Page>
+        <Heading>Erklärungen über {this.state.tag.fields.name}</Heading>
+        <p>{this.state.tag.fields.description}</p>
+        <GuidesList guides={this.state.guides} />
+      </Page>
+    ) : (
+      <Loading />
+    )
 }
 
 export default GuidesByTag

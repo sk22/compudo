@@ -1,9 +1,9 @@
 import React from 'react'
 
-import GuideOrSite from './guide-or-site'
+import Content from './content'
 
 const Home = props => (
-  <GuideOrSite showDiscussion={false} match={{ params: { slug: 'home' } }} />
+  <Content showDiscussion={false} match={{ params: { slug: 'home' } }} />
 )
 
 export default Home
