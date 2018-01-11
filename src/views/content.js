@@ -9,14 +9,27 @@ import Guide from '../components/guide'
 import Site from '../components/site'
 import Loading from '../components/loading'
 import Error from '../components/error'
-import Link, { linkCSS } from '../components/link'
-import { Heading } from '../components/heading'
+import Link, { linkCss } from '../components/link'
+import { listItemCss } from "../components/list";
+import { Heading, headingCss, subheadingCss } from '../components/heading'
 import Page from '../layouts/page'
 import client from '../cms'
 
 const Article = styled.article`
   & a {
-    ${linkCSS};
+    ${linkCss};
+  }
+
+  & li {
+    ${listItemCss};
+  }
+
+  & h1 {
+    ${headingCss}
+  }
+
+  & h2 {
+    ${subheadingCss}
   }
 `
 
@@ -64,9 +77,9 @@ class Content extends Component {
       .filter(link => /compudo.*/.test(parse(link.href).hostname))
       .forEach(link => {
         const span = document.createElement('span')
-        const { pathname } = parse(link.href)
+        const { pathname, protocol } = parse(link.href)
         const text = parse(link.innerText).protocol
-          ? `${window.location.hostname}/${pathname.slice(1)}`
+          ? `${protocol}//${window.location.hostname}/${pathname.slice(1)}`
           : link.innerText
 
         link.parentNode.replaceChild(span, link)

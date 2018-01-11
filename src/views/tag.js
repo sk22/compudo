@@ -46,7 +46,7 @@ class GuidesByTag extends Component {
 
   render = () =>
     this.state.guides ? (
-      <Page>
+      <Page title={this.state.tag.fields.name}>
         <Heading>Erklärungen über {this.state.tag.fields.name}</Heading>
         <p>{this.state.tag.fields.description}</p>
         <GuidesList guides={this.state.guides} />

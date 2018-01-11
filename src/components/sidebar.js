@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import SearchBar from './search-bar'
 import client from '../cms'
 import { SectionHeading } from './heading'
+import { ListItem } from './list'
 import Link from './link'
 
 export const SidebarSection = styled.section`
@@ -20,10 +21,6 @@ const Nav = styled.nav`
   @media screen and (max-width: 767px) {
     width: 100%;
   }
-`
-
-const Item = styled.li`
-  margin-bottom: 0.3rem;
 `
 
 class Sidebar extends Component {
@@ -45,15 +42,15 @@ class Sidebar extends Component {
           <SidebarSection>
             <SectionHeading>Erklärungen</SectionHeading>
             <ul>
-              <Item>
+              <ListItem>
                 <Link to={`/guides`}>Alle Erklärungen</Link>
-              </Item>
+              </ListItem>
               {this.state.tags.items.map(item => (
-                <Item key={item.fields.slug}>
+                <ListItem key={item.fields.slug}>
                   <Link to={`/guides/${item.fields.slug}`}>
                     {item.fields.name}
                   </Link>
-                </Item>
+                </ListItem>
               ))}
             </ul>
           </SidebarSection>
@@ -63,9 +60,9 @@ class Sidebar extends Component {
               {this.state.sites.items
                 .filter(item => !item.fields.hidden)
                 .map(item => (
-                  <Item key={item.fields.slug}>
+                  <ListItem key={item.fields.slug}>
                     <Link to={`/${item.fields.slug}`}>{item.fields.title}</Link>
-                  </Item>
+                  </ListItem>
                 ))}
             </ul>
           </SidebarSection>

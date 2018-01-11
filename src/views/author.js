@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import client from '../cms'
 import Page from '../layouts/page'
@@ -43,18 +43,15 @@ class GuidesByAuthor extends Component {
     }
   }
 
-  render = () => (
-    <Page>
-      {this.state.guides ? (
-        <Fragment>
-          <Heading>Erklärungen von {this.state.name}</Heading>
-          <GuidesList guides={this.state.guides} />
-        </Fragment>
-      ) : (
-        <Loading />
-      )}
-    </Page>
-  )
+  render = () =>
+    this.state.guides ? (
+      <Page title={this.state.name}>
+        <Heading>Erklärungen von {this.state.name}</Heading>
+        <GuidesList guides={this.state.guides} />
+      </Page>
+    ) : (
+      <Loading />
+    )
 }
 
 export default GuidesByAuthor

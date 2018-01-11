@@ -25,7 +25,7 @@ class Guides extends Component {
   render = () =>
     this.state.guides ? (
       <Page title="Alle Erklärungen">
-        <Heading>Erklärungen</Heading>
+        <Heading>Alle Erklärungen</Heading>
         <GuidesList guides={this.state.guides} />
       </Page>
     ) : (

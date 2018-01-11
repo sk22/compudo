@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 import debounce from 'lodash.debounce'
-import PropTypes from 'prop-types'
 import client from '../cms'
 import Link from './link'
 import { SectionHeading } from './heading'
 import { SidebarSection } from './sidebar'
+import { ListItem } from './list'
 
 const StyledInput = styled.input`
   border: none;
@@ -18,20 +18,6 @@ const StyledInput = styled.input`
     width: 100%;
   }
 `
-
-const ResultsList = styled.ul``
-
-const Result = ({ entry }) => (
-  <li>
-    <Link to={`/${entry.fields.slug}`}>{entry.fields.title}</Link>
-  </li>
-)
-
-Result.propTypes = {
-  entry: PropTypes.shape({
-    fields: PropTypes.shape({ slug: PropTypes.string, title: PropTypes.string })
-  })
-}
 
 class SearchBar extends Component {
   state = {
@@ -72,11 +58,13 @@ class SearchBar extends Component {
         (this.state.results.items.length ? (
           <SidebarSection>
             <SectionHeading>Suchergebnisse</SectionHeading>
-            <ResultsList>
+            <ul>
               {this.state.results.items.map(item => (
-                <Result key={item.fields.slug} entry={item} />
+                <ListItem key={item.fields.slug}>
+                  <Link to={`/${item.fields.slug}`}>{item.fields.title}</Link>
+                </ListItem>
               ))}
-            </ResultsList>
+            </ul>
           </SidebarSection>
         ) : (
           <p>

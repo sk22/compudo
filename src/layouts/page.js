@@ -9,7 +9,7 @@ const CommentsHeading = styled(SectionHeading)`
 `
 
 const Page = ({ title, children, showDiscussion = true }) => {
-  document.title = `${title || ''}${title ? ' - ' : ''}compudo`
+  document.title = `${title || ''}${title ? ' – ' : ''}compudo`
   return (
     <Fragment>
       {children}
