@@ -3,28 +3,22 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import Container from '../components/container'
-import { Header, Title } from '../components/header'
-import Logo from '../components/logo'
+import { Header, Title, HeaderLogo } from '../components/header'
 import Sidebar from '../components/sidebar'
 
-const HeaderLogo = styled(Logo)`
-  height: 10rem;
-  margin-right: 2.5rem;
+const Container = styled.div`
+  width: 60rem;
+  margin-left: 4rem;
 
-  @media screen and (max-width: 767px) {
-    height: 5rem;
-    margin-right: 1.25rem;
+  @media screen and (max-width: 1023px), print {
+    margin-left: 0;
+    width: 100%;
   }
 `
 
 const Content = styled.div`
   display: flex;
   padding: 1rem;
-
-  & > * + * {
-    margin-left: 2rem;
-  }
 
   @media screen and (max-width: 767px) {
     flex-direction: column-reverse;

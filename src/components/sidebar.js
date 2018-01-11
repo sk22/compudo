@@ -17,9 +17,15 @@ const Nav = styled.nav`
   flex-shrink: 0;
   flex-direction: column;
   width: 20rem;
+  margin-right: 2rem;
 
   @media screen and (max-width: 767px) {
     width: 100%;
+  }
+
+  @media print {
+    display: none;
+    margin-right: 0;
   }
 `
 
