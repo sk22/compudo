@@ -10,11 +10,11 @@ import Sidebar from '../components/sidebar'
 
 const HeaderLogo = styled(Logo)`
   height: 10rem;
-  margin-right: 3rem;
+  margin-right: 2.5rem;
 
   @media screen and (max-width: 767px) {
     height: 5rem;
-    margin-right: 1.5rem;
+    margin-right: 1.25rem;
   }
 `
 
