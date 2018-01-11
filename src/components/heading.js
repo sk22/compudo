@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components'
 
 export const headingCss = css`
-  margin-top: 0;
   font-size: 2.3rem;
   font-weight: 400;
 `
@@ -25,4 +24,8 @@ export const SectionHeading = styled.h2`
   letter-spacing: 0.1rem;
   font-size: 1.2rem;
   font-weight: bold;
+`
+
+export const TitleHeading = styled(Heading)`
+  margin-top: 0;
 `

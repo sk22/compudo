@@ -4,7 +4,7 @@ import client from '../cms'
 import Page from '../layouts/page'
 import Loading from '../components/loading'
 import GuidesList from '../components/guides-list'
-import { Heading } from '../components/heading'
+import { TitleHeading } from '../components/heading'
 
 class GuidesByAuthor extends Component {
   static propTypes = {
@@ -46,7 +46,7 @@ class GuidesByAuthor extends Component {
   render = () =>
     this.state.guides ? (
       <Page title={this.state.name}>
-        <Heading>Erklärungen von {this.state.name}</Heading>
+        <TitleHeading>Erklärungen von {this.state.name}</TitleHeading>
         <GuidesList guides={this.state.guides} />
       </Page>
     ) : (

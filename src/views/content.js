@@ -10,8 +10,12 @@ import Site from '../components/site'
 import Loading from '../components/loading'
 import Error from '../components/error'
 import Link, { linkCss } from '../components/link'
-import { listItemCss } from "../components/list";
-import { Heading, headingCss, subheadingCss } from '../components/heading'
+import { listItemCss } from '../components/list'
+import {
+  headingCss,
+  subheadingCss,
+  TitleHeading
+} from '../components/heading'
 import Page from '../layouts/page'
 import client from '../cms'
 
@@ -25,11 +29,11 @@ const Article = styled.article`
   }
 
   & h1 {
-    ${headingCss}
+    ${headingCss};
   }
 
   & h2 {
-    ${subheadingCss}
+    ${subheadingCss};
   }
 `
 
@@ -154,7 +158,7 @@ class Content extends Component {
         title={this.state.entry && this.state.entry.fields.title}
         showDiscussion={this.props.showDiscussion}
       >
-        <Heading>{this.state.entry.fields.title}</Heading>
+        <TitleHeading>{this.state.entry.fields.title}</TitleHeading>
         {element}
       </Page>
     ) : this.state.ok ? (

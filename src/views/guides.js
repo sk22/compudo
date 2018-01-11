@@ -3,7 +3,7 @@ import client from '../cms'
 import Page from '../layouts/page'
 import Loading from '../components/loading'
 import GuidesList from '../components/guides-list'
-import { Heading } from '../components/heading'
+import { TitleHeading } from '../components/heading'
 
 class Guides extends Component {
   state = {
@@ -25,7 +25,7 @@ class Guides extends Component {
   render = () =>
     this.state.guides ? (
       <Page title="Alle Erklärungen">
-        <Heading>Alle Erklärungen</Heading>
+        <TitleHeading>Alle Erklärungen</TitleHeading>
         <GuidesList guides={this.state.guides} />
       </Page>
     ) : (

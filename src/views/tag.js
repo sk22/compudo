@@ -4,7 +4,7 @@ import client from '../cms'
 import Page from '../layouts/page'
 import Loading from '../components/loading'
 import GuidesList from '../components/guides-list'
-import { Heading } from '../components/heading'
+import { TitleHeading } from '../components/heading'
 
 class GuidesByTag extends Component {
   static propTypes = {
@@ -47,7 +47,7 @@ class GuidesByTag extends Component {
   render = () =>
     this.state.guides ? (
       <Page title={this.state.tag.fields.name}>
-        <Heading>Erklärungen über {this.state.tag.fields.name}</Heading>
+        <TitleHeading>Erklärungen über {this.state.tag.fields.name}</TitleHeading>
         <p>{this.state.tag.fields.description}</p>
         <GuidesList guides={this.state.guides} />
       </Page>
