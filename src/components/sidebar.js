@@ -4,7 +4,13 @@ import SearchBar from './search-bar'
 import client from '../cms'
 import { SectionHeading } from './heading'
 import { ListItem } from './list'
-import Link from './link'
+import Link, { DecorationlessLink } from './link'
+
+const ContentfulImage = styled.img`
+  max-width: 100px;
+  width: 100%;
+  margin-top: 2rem;
+`
 
 export const SidebarSection = styled.section`
   * + & {
@@ -72,6 +78,16 @@ class Sidebar extends Component {
                 ))}
             </ul>
           </SidebarSection>
+          <DecorationlessLink
+            to="https://www.contentful.com/"
+            rel="nofollow"
+            target="_blank"
+          >
+            <ContentfulImage
+              src="https://images.contentful.com/fo9twyrwpveg/44baP9Gtm8qE2Umm8CQwQk/c43325463d1cb5db2ef97fca0788ea55/PoweredByContentful_LightBackground.svg"
+              alt="Powered by Contentful"
+            />
+          </DecorationlessLink>
         </Fragment>
       ) : (
         <p>Es wird geladen...</p>

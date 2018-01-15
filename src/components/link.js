@@ -23,4 +23,9 @@ const StyledLink = styled(Link)`
   ${linkCss};
 `
 
+export const DecorationlessLink = styled(Link)`
+  text-decoration: none;
+  color: initial;
+`
+
 export default StyledLink

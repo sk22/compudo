@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
+import { DecorationlessLink } from '../components/link'
 import { Header, Title, HeaderLogo } from '../components/header'
 import Sidebar from '../components/sidebar'
 
@@ -34,11 +34,6 @@ const Content = styled.div`
 
 const Main = styled.main`
   flex-grow: 1;
-`
-
-const DecorationlessLink = styled(Link)`
-  text-decoration: none;
-  color: initial;
 `
 
 const Shell = ({ title = 'compudo', children }) => {
