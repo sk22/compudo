@@ -64,6 +64,8 @@ GuidesList.propTypes = {
   guides: PropTypes.arrayOf(
     PropTypes.shape({
       fields: PropTypes.shape({
+        slug: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
         tags: PropTypes.arrayOf(
           PropTypes.shape({
             fields: PropTypes.shape({

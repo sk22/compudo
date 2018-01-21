@@ -43,7 +43,9 @@ class SearchBar extends Component {
   fetchResults = text =>
     client.getEntries({
       query: text,
-      content_type: 'guide'
+      content_type: 'guide',
+      limit: 10,
+      select: 'fields.title,fields.slug'
     })
 
   render = () => (

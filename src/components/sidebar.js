@@ -42,7 +42,10 @@ class Sidebar extends Component {
 
   async componentDidMount() {
     const tags = await client.getEntries({ content_type: 'tag' })
-    const sites = await client.getEntries({ content_type: 'site' })
+    const sites = await client.getEntries({
+      content_type: 'site',
+      select: 'fields.title,fields.slug,fields.hidden'
+    })
     this.setState({ tags, sites })
   }
 

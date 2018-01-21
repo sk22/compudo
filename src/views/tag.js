@@ -36,7 +36,8 @@ class GuidesByTag extends Component {
     if (tags.items.length) {
       const guides = await client.getEntries({
         content_type: 'guide',
-        'fields.tags.sys.id[in]': tags.items[0].sys.id
+        'fields.tags.sys.id[in]': tags.items[0].sys.id,
+        select: 'fields.title,fields.slug,fields.tags,fields.authors'
       })
       this.setState({ guides: guides.items, tag: tags.items[0] })
     } else {

@@ -29,15 +29,17 @@ class GuidesByAuthor extends Component {
   async updateGuides(username) {
     const author = await client.getEntries({
       content_type: 'author',
-      'fields.username': username
+      'fields.username': username,
+      select: 'fields.name'
     })
 
     if (author.items.length) {
-      const guides = await client.getEntries({
+      const result = await client.getEntries({
         content_type: 'guide',
-        'fields.authors.sys.id[in]': author.items[0].sys.id
+        'fields.authors.sys.id[in]': author.items[0].sys.id,
+        select: 'fields.title,fields.slug,fields.tags,fields.authors'
       })
-      this.setState({ guides: guides.items, name: author.items[0].fields.name })
+      this.setState({ guides: result.items, name: author.items[0].fields.name })
     } else {
       this.setState({ guides: [], name: username })
     }
