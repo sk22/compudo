@@ -35,6 +35,10 @@ const Article = styled.article`
   & h2 {
     ${subheadingCss};
   }
+
+  & img {
+    max-width: 100%;
+  }
 `
 
 function createContextProvider(context) {
